@@ -124,7 +124,7 @@ class Game:
     def left_click(self, x, y):  # runs the left click function in the __gameArray class
         temp_int = self.gameArray[x, y].left_click()
         if temp_int == 9:
-            self.__gameOver = True
+            self.gameOver = True
         return temp_int
 
     def right_click(self, x, y):  # runs the right click function in the __gameArray class
@@ -132,7 +132,7 @@ class Game:
         return flagged
 
     def get_game_over(self):  # returns if the game is over
-        return self.__gameOver
+        return self.gameOver
 
     def get_clicked(self, x, y):  # returns if the tile has been clicked
         temp_bool = self.gameArray[x, y].get_clicked()
