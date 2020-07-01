@@ -1,0 +1,45 @@
+Generator test complete, passing 2/2 Objectives on 19/05/2018:
+
+Objective 1:
+Implement a left click function.
+
+Objective 2:
+Implement a right click function.
+
+
+SUMMARY OF SOLUTION:
+
+
+=Objective 1:
+left clicking should return either true or false, based on if the tile is a bomb or if it is flagged
+
+==Objective 2:
+right clicking should return either true or false, based on if the tile has been flagged or not
+
+
+TEST RESULTS:
+
+
+Test Code:
+(note: tested in tile.py so no need to import)
+
+print("TEST 1:")
+test = Tile(9, 0, 0)
+print(str(test.right_click()) + ", Expected: True")
+print(str(test.left_click()) + ", Expected: False")
+print(str(test.right_click()) + ", Expected: False")
+print(str(test.left_click()) + ", Expected: True")
+print("TEST 2:")
+test2 = Tile(8, 0, 0)
+print(str(test2.left_click()) + ", Expected: False")
+
+
+Example of passing visual result:
+
+TEST 1:
+True, Expected: True
+False, Expected: False
+False, Expected: False
+True, Expected: True
+TEST 2:
+False, Expected: False

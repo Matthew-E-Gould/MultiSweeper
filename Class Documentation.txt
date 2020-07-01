@@ -1,0 +1,75 @@
+###########
+Tile Class:
+
+= generate(self, value):
+- "value" needs to and int in the range of 0-9
+this function will work out if the tile is a bomb or not, if the value is 9 it is and 0-8 is not, the values of 0-8 stores how many bombs the tile is adjacent to
+- no return
+
+= left_click(self):
+runs the left click funtion of the button (revealing tile)
+- returns the "value" of the tile 0-9
+
+= right_click(self):
+runs the right click funtion of the button (flagging tile)
+- returns if the tile is flagged or not
+
+= get_clicked(self):
+- returns if the tile has been revealed or not
+
+= get_flagged(self):
+- returns if the tile has been flagged or not
+
+###########
+Game Class:
+
+= __field_generate(self, first_move_x, first_move_y):
+- "first_move_x" X location of first move
+- "first_move_y" Y location of first move
+function generates a feild and makes sure that no bombs appear on the first selected tile
+- returns the generated 2D array
+
+= __guide_create(self):
+
+= __solution_draw(self):
+
+= new_board(self, x_size, y_size):
+
+= is_clear(self, x, y):
+
+= left_click(self, x, y):
+
+= right_click(self, x, y):
+
+= get_game_over(self):
+
+= get_clicked(self, x, y):
+
+= get_flagged(self, x, y):
+
+= get_grid(self):
+
+#############
+Window Class:
+
+= new_game_input(self, error):
+
+= generate(self, x, y, b):
+
+= new_game(self):
+
+= auto_reveal(self, x_input, y_input):
+
+= build(self):
+
+= left_click(self, x, y, auto_reveal, second_click):
+
+= right_click(self, x, y):
+
+= update_stats(self, bombs, tiles):
+
+= end(self, win):
+
+= send_move(self, x, y, left):
+
+= get_game_grid(self):

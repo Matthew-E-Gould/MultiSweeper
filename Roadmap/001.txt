@@ -1,0 +1,81 @@
+Generator test complete, passing 2/2 Objectives on 19/05/2018:
+
+Objective 1:
+Generator must be able to draw a solution of the board.
+
+Objective 2:
+Generator must be able to return if a bomb is on a location.
+
+
+SUMMARY OF SOLUTION:
+
+
+=Objective 1:
+when asked to the generator can provide a solution in a "np.zeros((self.__size, self.__size), dtype=str)" array:
+[['2' '+' '2' '0' '1' '+' '2' '1' '0' '0']
+ ['2' '+' '2' '0' '2' '4' '+' '3' '1' '0']
+ ['1' '1' '1' '0' '1' '+' '+' '+' '2' '1']
+ ['0' '0' '0' '0' '1' '2' '3' '2' '3' '+']
+ ['0' '0' '0' '0' '0' '0' '0' '0' '2' '+']
+ ['0' '0' '0' '0' '0' '0' '0' '0' '1' '1']
+ ['0' '0' '0' '0' '0' '0' '0' '0' '0' '0']
+ ['0' '0' '0' '0' '0' '0' '0' '0' '0' '0']
+ ['0' '1' '1' '1' '0' '0' '0' '0' '0' '0']
+ ['0' '1' '+' '1' '0' '0' '0' '0' '0' '0']]
+
+ Where:
+A number is how many bombs are around the point.
+A + is a bomb
+
+ Assumptions Made:
+End user has to convert from string to desired format(s)
+
+
+==Objective 2:
+When asked the generator can return if a tile is a bomb.
+
+A test function was used to keep making new games until selected tile 0,0 was not a bomb.
+
+
+TEST RESULTS:
+* Each visual test represents 10 program check.
+* Preformed 10 visual checks with code provided.
+* 100 effective tests complete
+
+Test Code:
+(note: tested in generator.py so no need to import)
+
+if __name__ == '__main__':
+    # test with program
+    testMax = 10
+    testBomb = 10
+    for testCount in range(0, testMax):
+        testCoOrd = testCount
+        testSize = testMax
+
+        g = Game(testBomb, testSize)
+
+        fail = g.mineTest(testCoOrd, testCoOrd)
+        while fail:
+            g.resetBoard()
+            g.newBoard()
+            fail = g.mineTest(testCoOrd, testCoOrd)
+# test results check
+print("Return board to pass:")
+print(g.getSolution())
+print("Return False to pass: " + str(g.mineTest(testCoOrd, testCoOrd)))
+
+Example of passing visual result:
+
+Return board to pass:
+[['0' '0' '0' '2' '+' '2' '1' '1' '1' '0']
+ ['0' '0' '1' '3' '+' '3' '2' '+' '2' '1']
+ ['0' '0' '1' '+' '3' '+' '3' '4' '+' '2']
+ ['0' '0' '1' '1' '2' '2' '+' '4' '+' '3']
+ ['0' '0' '0' '0' '0' '1' '1' '3' '+' '2']
+ ['0' '0' '0' '0' '0' '1' '1' '2' '1' '1']
+ ['0' '0' '0' '0' '0' '1' '+' '1' '0' '0']
+ ['0' '0' '0' '0' '0' '1' '1' '1' '0' '0']
+ ['0' '0' '0' '0' '0' '0' '0' '0' '0' '0']
+ ['0' '0' '0' '0' '0' '0' '0' '0' '0' '0']]
+Return False to pass: False

@@ -1,0 +1,123 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            const int size = 9;
+            const int chance = size * size;
+            const int bombs = 28;
+            bool[,] feild = new bool[size, size];
+            int[,] guide = new int[size, size];
+            int bombCount = 0;
+            Int64 iterations = 0;
+
+            Random rng = new Random();
+
+            while (true)
+            {
+                //////////////////////
+                //Resetting everything
+                iterations = 0;
+                bombCount = 0;
+                for (int x = 0; x < size; x++)
+                {
+                    for (int y = 0; y < size; y++)
+                    {
+                        feild[x, y] = false;
+                        guide[x, y] = 0;
+                    }
+                }
+                //Resetting everything
+                //////////////////////
+
+                //////////////////
+                //generating feild
+                Console.Clear();
+                Console.WriteLine("Generating feild of play...");
+
+                while (bombCount < bombs)
+                {
+                    for (int x = 0; x < size; x++)
+                    {
+                        for (int y = 0; y < size; y++)
+                        {
+                            if (!feild[x, y] && rng.Next(chance) == 0) // if there is not a bomb already there && generator wants to put a bomb there
+                            {
+                                feild[x, y] = true;
+                                bombCount++;
+                            }
+                            iterations++;
+                        }
+                    }
+                }
+                //generating feild
+                //////////////////
+                Console.WriteLine("Done in " + iterations + " iterations!");
+
+
+                ///////////////
+                //Drawing guide
+                for (int x = 0; x < size; x++)
+                {
+                    for (int y = 0; y < size; y++)
+                    {
+                        for (int i = x-1; i < x+1; i++)
+                        {
+                            for (int j = y-1; j < y+1; j++)
+                            {
+                                if(0 < i && i < size && 0 < j && j < size)
+                                {
+                                    if (feild[i, j])
+                                    {
+                                        guide[x, y]++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                //Drawing guide
+                ///////////////
+
+                //////////////////////////
+                //Outputting feild & Guide
+                for (int x = 0; x < size; x++)
+                {
+                    for (int y = 0; y < size; y++)
+                    {
+                        if (feild[x, y])
+                        {
+                            Console.Write("1, ");
+                        }
+                        else
+                        {
+                            Console.Write("0, ");
+                        }
+                    }
+                    Console.WriteLine();
+                }
+                Console.WriteLine("---");
+                for (int x = 0; x < size; x++)
+                {
+                    for (int y = 0; y < size; y++)
+                    {
+                        Console.Write(guide[x, y] + ", ");
+                    }
+                    Console.WriteLine();
+                }
+                //Outputting feild & Guide
+                //////////////////////////
+
+                Console.WriteLine("Press any key to generate again.");
+                Console.ReadKey();
+            }
+        }
+    }
+}
